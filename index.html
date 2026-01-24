@@ -12,6 +12,13 @@
 	<title>Hustle And Flow</title>
 	<link rel="canonical" href="https://hustleandflow.in/" />
 	<link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="marquee.css">
+    <link
+  href="https://assets.calendly.com/assets/external/widget.css"
+  rel="stylesheet"
+/>
+
+
 		
 </head>
 
@@ -36,54 +43,240 @@
 </nav>
 
 <!--Main-Hero-->
-						<section class="focal-hero">
+<section class="focal-hero">
     <div class="hero-noise-overlay"></div>
     <div class="container">
         <div class="hero-content">
-            <div class="hero-eyebrow">
-                <span class="pulse-dot"></span> 
-                Now Partnering with Forward-Thinking Brands
+       <h1 class="hero-main-title">
+        <span class="hero-eyebrow">
+    We help you generate
+  </span>
+    
+    <span class="revenue-highlight">
+        M<span class="spinning-o-container">
+            <span class="o-border">O</span>
+            <div class="circular-text-wrap">
+                <span style="--i:0">M</span><span style="--i:1">O</span>
+                <span style="--i:2">R</span><span style="--i:3">E</span>
+                <span style="--i:4">*</span><span style="--i:5">R</span>
+                <span style="--i:6">E</span><span style="--i:7">V</span>
+                <span style="--i:8">E</span><span style="--i:9">N</span>
+                <span style="--i:10">U</span><span style="--i:11">E</span>
+                <span style="--i:12">*</span>
             </div>
-            
-            <h1 class="hero-main-title">
-                Ignite Your <span class="text-accent-red">Hustle</span>,<br> 
-                Find Your <span class="text-outline">Flow.</span>
-            </h1>
-            
+        </span>RE REVENUE
+    </span>
+</h1>
             <p class="hero-sub-text">
-                We are a high-performance digital collective. We combine aggressive growth strategies with seamless execution to scale your brand from local hustle to global flow.
-            </p>
-            
+  <span class="hero-quote shiny">
+    Ignite Your <span class="text-accent-red">Hustle</span>, 
+    Find Your <span class="text-outline">Flow.</span>
+  </span>
+
+  <span class="hero-description">
+    We combine efficient growth strategies with seamless execution to scale your brand from local hustle to global flow.
+  </span>
+</p>
             <div class="hero-cta-group">
-                <a href="#contact-us" class="btn-primary-large">Start Scaling</a>
-                <a href="#our-services" class="btn-text-link">Our Methodology <i class="fas fa-arrow-right"></i></a>
+                <a href="#contact-us" class="btn-primary-large" id="bookMeetingBtn">Book a Meeting</a>
             </div>
         </div>
     </div>
     
-    <div class="hero-bg-text">H&F</div>
 </section>
+
+<script>
+document.getElementById("bookMeetingBtn").addEventListener("click", function (e) {
+  e.preventDefault();
+
+  Calendly.initPopupWidget({
+    url: "https://calendly.com/kashyap-sawanjha?primary_color=dc3232&text_color=000000&background_color=#e2ddb4"
+  });
+});
+</script>
+
+
+<script>
+document.querySelectorAll('.circular-text-wrap').forEach(el => {
+
+  let rotation = 0;
+  let speed = 360 / 20; // degrees per second
+  let targetSpeed = speed;
+  let lastTime = performance.now();
+
+  const baseDuration = Number(el.dataset.duration || 20);
+  const hoverMode = el.dataset.hover || 'speedUp';
+
+  function setSpeedByMode(mode) {
+    switch (mode) {
+      case 'slowDown':
+        targetSpeed = 360 / (baseDuration * 2);
+        break;
+      case 'speedUp':
+        targetSpeed = 360 / (baseDuration / 4);
+        break;
+      case 'pause':
+        targetSpeed = 0;
+        break;
+      case 'goBonkers':
+        targetSpeed = 360 / (baseDuration / 20);
+        break;
+      default:
+        targetSpeed = 360 / baseDuration;
+    }
+  }
+
+  function animate(now) {
+    const delta = (now - lastTime) / 1000;
+    lastTime = now;
+
+    // smooth interpolation (spring-ish)
+    speed += (targetSpeed - speed) * 0.08;
+
+    rotation += speed * delta;
+    el.style.transform = `rotate(${rotation}deg)`;
+
+    requestAnimationFrame(animate);
+  }
+
+  el.addEventListener('mouseenter', () => {
+    setSpeedByMode(hoverMode);
+  });
+
+  el.addEventListener('mouseleave', () => {
+    targetSpeed = 360 / baseDuration;
+  });
+
+  requestAnimationFrame(animate);
+});
+</script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+<script>
+// Check if GSAP is actually loaded
+if (typeof gsap !== 'undefined') {
+    gsap.registerPlugin(ScrollTrigger);
+
+    const initHeroAnimation = () => {
+        console.log("H&F Animation Initializing...");
+
+        const targets = [
+            { selector: '.hero-eyebrow', delay: 0 },
+            { selector: '.hero-main-title', delay: 0.1 },
+            { selector: '.hero-sub-text', delay: 0.2 },
+            { selector: '.hero-cta-group', delay: 0.3 }
+        ];
+
+        targets.forEach(({ selector, delay }) => {
+            const el = document.querySelector(selector);
+            
+            if (el) {
+                // We use .fromTo so we define exactly where it starts and ends
+                gsap.fromTo(el, 
+                    { 
+                        y: 50, 
+                        opacity: 0 
+                    }, 
+                    { 
+                        y: 0, 
+                        opacity: 1, 
+                        duration: 1, 
+                        delay: delay, 
+                        ease: "power4.out",
+                        scrollTrigger: {
+                            trigger: el,
+                            start: "top 95%",
+                            toggleActions: "play none none none"
+                        }
+                    }
+                );
+            }
+        });
+    };
+
+    // Run immediately and also on load to be safe
+    initHeroAnimation();
+} else {
+    console.error("GSAP not found! Make sure the CDN links are above this script.");
+    // Emergency Fallback: If GSAP fails, show the text anyway
+    document.querySelectorAll('.hero-main-title, .hero-sub-text, .hero-cta-group').forEach(el => el.style.opacity = 1);
+}
+</script>
+
 <!--BANNER IMG SECTION-->
-				<section class="hero-container" id="hero-section">
-    <div class="hero-left">
-        <div class="content-wrapper" id="content-wrapper">
-            <span class="hero-badge" id="hero-badge">CAMPAIGN LIVE</span>
-            <h1 class="hero-title" id="hero-title">Elevating Digital <br>Presence.</h1>
-            <p class="hero-description" id="hero-desc">
-                We craft bespoke digital experiences for world-class brands.
-            </p>
-            <div class="brand-footer">
-                <span>Partnering with</span>
-                <span class="brand-tag" id="brand-tag">HYPHEN</span>
-            </div>
-            <button class="hero-btn">Start a Project</button>
-        </div>
+<section class="launch-section">
+  <div class="launch-left">
+    <span class="badge">LAUNCHED</span>
+    <h1>THIS MONTH</h1>
+    <p>Crafting digital excellence for premium brands.</p>
+  </div>
+
+  <div class="launch-right">
+    <div class="image-grid" id="imageGrid">
+      <div class="tile"></div>
+      <div class="tile"></div>
+      <div class="tile"></div>
+      <div class="tile"></div>
     </div>
-    <div class="hero-right">
-        <div class="image-overlay"></div>
-        <img src="https://picsum.photos/id/20/1200/800" alt="Agency Work" id="hero-img">
-    </div>
+  </div>
 </section>
+<script>
+const images = [
+  "https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9",
+  "https://images.unsplash.com/photo-1515378791036-0648a3ef77b2",
+  "https://images.unsplash.com/photo-1542838132-92c53300491e"
+];
+
+const tiles = document.querySelectorAll(".tile");
+
+let currentImage = 0;
+let nextImage = 1;
+
+const positions = [
+  [0, 0], // (0,0)
+  [1, 0], // (1,0)
+  [0, 1], // (0,1)
+  [1, 1]  // (1,1)
+];
+
+function setImage(imgIndex) {
+  tiles.forEach((tile, i) => {
+    const x = i % 2;
+    const y = Math.floor(i / 2);
+
+    tile.style.backgroundImage = `url(${images[imgIndex]})`;
+    tile.style.backgroundPosition = `${x * 100}% ${y * 100}%`;
+  });
+}
+
+// initialize
+setImage(currentImage);
+
+function animateSwap() {
+  let step = 0;
+
+  const interval = setInterval(() => {
+    const [x, y] = positions[step];
+    const index = y * 2 + x;
+
+    tiles[index].style.backgroundImage =
+      `url(${images[nextImage]})`;
+
+    step++;
+
+    if (step === 4) {
+      clearInterval(interval);
+      currentImage = nextImage;
+      nextImage = (nextImage + 1) % images.length;
+    }
+  }, 350);
+}
+
+setInterval(animateSwap, 3000);
+</script>
+
 <!--Philosophy Section-->				
 <section class="philosophy-section light-theme">
     <div class="philosophy-container">
@@ -124,19 +317,54 @@
 
 <!--Logo Sliding Section-->
 <section class="clients-brand-section">
-    <div class="logo-viewport">
-        <div class="logo-track" id="track1"></div>
-        <div class="logo-track" id="track2"></div>
-        <div class="logo-track" id="track3"></div>
-    </div>
+    
+
+    <article class="wrapper">
+        <div class="marquee" id="track1">
+            <div class="marquee__group">
+                <img src="logos/hustleandflow-logo.png" alt="">
+                <img src="logos/hustleandflow-logo.png" alt="">
+                <img src="logos/hustleandflow-logo.png" alt="">
+                <img src="logos/hustleandflow-logo.png" alt="">
+                <img src="logos/hustleandflow-logo.png" alt="">
+                <img src="logos/hustleandflow-logo.png" alt="">
+                
+            </div>
+            <div aria-hidden="true" class="marquee__group">
+                <img src="logos/hustleandflow-logo.png" alt="">
+                <img src="logos/hustleandflow-logo.png" alt="">
+                <img src="logos/hustleandflow-logo.png" alt="">
+                <img src="logos/hustleandflow-logo.png" alt="">
+                <img src="logos/hustleandflow-logo.png" alt="">
+                <img src="logos/hustleandflow-logo.png" alt="">
+            </div>
+        </div>
+
+        <div class="marquee marquee--reverse" id="track2">
+            <div class="marquee__group">
+                <img src="logos/hustleandflow-logo.png" alt="">
+                <img src="logos/hustleandflow-logo.png" alt="">
+                <img src="logos/hustleandflow-logo.png" alt="">
+                <img src="logos/hustleandflow-logo.png" alt="">
+                <img src="logos/hustleandflow-logo.png" alt="">
+                <img src="logos/hustleandflow-logo.png" alt="">
+            </div>
+            <div aria-hidden="true" class="marquee__group">
+                
+                <img src="logos/hustleandflow-logo.png" alt="">
+                <img src="logos/hustleandflow-logo.png" alt="">
+                <img src="logos/hustleandflow-logo.png" alt="">
+                <img src="logos/hustleandflow-logo.png" alt="">
+                <img src="logos/hustleandflow-logo.png" alt="">
+                <img src="logos/hustleandflow-logo.png" alt="">
+            </div>
+        </div>
+    </article>
 </section>
 
 <!--REVIEW SECTION-->
 <section class="reviews-section">
-    <div class="reviews-title-container">
-        <h2 class="reviews-main-title">Listen to our Reviews</h2>
-        <img src="logos/speakerphone.gif" alt="Megaphone" class="megaphone-gif">
-    </div>
+    
     <div class="reviews-wrapper">
         <div class="reviews-track" id="reviewsTrack">
             <article class="review-card">
@@ -417,41 +645,31 @@
         <div class="contact-split-grid">
             
             <div class="contact-form-side">
-                <span class="eyebrow-red">Get a Quote</span>
+                <span class="eyebrow-red"><sup>❝</sup>Get a Quote</span>
                 <h2 class="form-title">Say Hello<span>.</span></h2>
                 
-                <form class="ghost-form">
-                    <div class="input-row">
-                        <input type="text" placeholder="First Name*" required class="ghost-input">
-                        <input type="text" placeholder="Last Name*" required class="ghost-input">
-                    </div>
-                    <input type="email" placeholder="Email Address*" required class="ghost-input">
-                    
-                    <div class="service-selection">
-                        <p>What are you looking for?</p>
-                        <div class="checkbox-group">
-                            <label class="pill"><input type="checkbox"> eCommerce</label>
-                            <label class="pill"><input type="checkbox"> Branding</label>
-                            <label class="pill"><input type="checkbox"> Performance</label>
-                        </div>
-                    </div>
+                <div class="calendly-form-wrapper">
 
-                    <textarea placeholder="Tell us about your project..." rows="4" class="ghost-input"></textarea>
-                    
-                    <button type="submit" class="submit-action">
-                        Send Message <i class="fas fa-arrow-right"></i>
-                    </button>
-                </form>
+  <div 
+    class="calendly-inline-widget"
+    data-url="https://calendly.com/kashyap-sawanjha?primary_color=e43636"
+    style="min-width:320px;height:700px;">
+  </div>
+
+</div>
+
             </div>
 
             <div class="contact-quote-side">
-                <div class="quote-container">
-                    <i class="fas fa-quote-left quote-icon"></i>
-                    <h3 class="big-quote">
-                        "The hustle gets you in the door; the flow keeps you in the room."
-                    </h3>
-                    <p class="quote-author">— H&F Philosophy</p>
-                </div>
+                <div class="quote-wrapper">
+    <div class="quote-bubble">
+        <i class="fas fa-quote-left quote-icon"></i>
+        <h3 class="big-quote">
+            "The hustle gets you in the door; the flow keeps you in the room."
+        </h3>
+        <p class="quote-author">— H&amp;F Philosophy</p>
+    </div>
+</div>
 
                 <div class="contact-info-footer">
                     <div class="info-item">
@@ -495,10 +713,12 @@
         <div class="footer-col">
             <h4 class="footer-title">Our Services</h4>
             <ul class="footer-links">
-                <li><a href="#our-services">Service 0</a></li>
-                <li><a href="#our-services">Service 1</a></li>
-                <li><a href="#our-services">Service 2</a></li>
-                <li><a href="#our-services">Service 3</a></li>
+                <li><a href="#our-services">SEO</a></li>
+                <li><a href="#our-services">Amazon</a></li>
+                <li><a href="#our-services">Google Ads</a></li>
+                <li><a href="#our-services">Facebook Ads</a></li>
+                <li><a href="#our-services">Web Design</a></li>
+
             </ul>
         </div>
 
@@ -506,10 +726,10 @@
             <h4 class="footer-title">Let's Talk!</h4>
             <p class="footer-address">Some Long Address, In India - Zip Code.</p>
             <div class="social-icons">
-                <a href="#"><i class="fab fa-facebook-square"></i></a>
-                <a href="#"><i class="fab fa-instagram"></i></a>
-                <a href="#"><i class="fab fa-twitter"></i></a>
-                <a href="#"><i class="fab fa-linkedin"></i></a>
+                <a href="#"><i data-lucide="mail"></i></a>
+                <a href="#"><i data-lucide="instagram"></i></a>
+                <a href="#"><i data-lucide="twitter"></i></a>
+                <a href="#"><i data-lucide="linkedin"></i></a>
             </div>
         </div>
     </div>
@@ -518,10 +738,15 @@
         <p>Copyright © 2025 Hustle And Flow. All Rights Reserved.</p>
     </div>
 </footer>	
-			
+
+
+	<script src="https://unpkg.com/lucide@latest"></script>
+		<script>
+  lucide.createIcons();
+</script>
 	<script src="slider.js"></script>
 	<script src="carousel.js"></script>
     <script src="logo-loop.js"></script>
-	
-	</body>
+	<script src="https://assets.calendly.com/assets/external/widget.js"   async></script>
+</body>
 </html>
