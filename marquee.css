@@ -1,0 +1,87 @@
+/* --- INFINITE LOGO MARQUEE --- */
+:root {
+  /* Control the size and speed here */
+  --marquee-size: clamp(10rem, 8rem + 10vmin, 20rem); 
+  --marquee-gap: 50px;
+  --marquee-duration: 40s;
+}
+
+.clients-brand-section {
+    padding: 80px 0;
+    background-color: #FFFFFF; /* White wall look */
+    overflow: hidden;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: var(--marquee-gap);
+  width: 100%;
+}
+
+.marquee {
+  --duration: 40s; /* fallback */
+
+  display: flex;
+  overflow: hidden;
+  user-select: none;
+  gap: var(--marquee-gap);
+
+  animation: marquee-scroll var(--duration) linear infinite;
+
+  mask-image: linear-gradient(to right,
+    transparent,
+    black 15%,
+    black 85%,
+    transparent
+  );
+}
+
+.marquee__group {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  gap: var(--marquee-gap);
+  min-width: 100%;
+  animation: scroll-x var(--marquee-duration) linear infinite;
+}
+
+.marquee--reverse .marquee__group {
+  animation-direction: reverse;
+}
+
+/* The Animation */
+@keyframes scroll-x {
+  from { transform: translateX(0); }
+  to { transform: translateX(calc(-100% - var(--marquee-gap))); }
+}
+
+/* LOGO/PNG STYLING */
+.marquee img, 
+.marquee svg {
+  width: var(--marquee-size);
+  height: auto;
+  object-fit: contain;
+  aspect-ratio: 16/9;
+  padding: 10px;
+  filter: none !important; /* No grayscale */
+  transition: transform 0.3s ease;
+}
+
+.marquee img:hover {
+    transform: scale(1.1);
+}
+
+/* Toggle Button (Optional) */
+.toggle {
+    position: absolute;
+    right: 20px;
+    background: #000;
+    color: #fff;
+    border: none;
+    padding: 10px;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 10;
+}
