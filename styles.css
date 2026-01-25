@@ -17,7 +17,9 @@ body {
     overflow-x: hidden;
 }
 
-img { max-width: 100%; height: auto; display: block; }
+img { max-width: 100%; height: auto; display: flex; }
+
+
 
 .container {
     max-width: var(--container-width);
@@ -445,29 +447,36 @@ img { max-width: 100%; height: auto; display: block; }
 .launch-section {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  min-height: 90vh;
-  background: #f7f7e8;
-  padding: 80px;
+  padding-right: 0;
+
+  height: 80vh;
+  background: #f7efe5;
   gap: 60px;
   align-items: center;
 }
 
+.launch-left {
+    padding-left: 60px;
+  justify-self: start;
+  max-width: 600px;
+}
+
 .launch-left h1 {
-  font-size: 4rem;
+  font-size: 4.6rem;
   line-height: 1;
   margin: 10px 0;
   color: #243b45;
 }
 
 .launch-left p {
-  font-size: 1.2rem;
+  font-size: 1.8rem;
   color: #555;
-  max-width: 420px;
+  max-width: 480px;
 }
 
 .badge {
   display: inline-block;
-  background: #9aa55b;
+  background: #0d2f55;
   color: white;
   padding: 6px 14px;
   font-weight: 700;
@@ -477,27 +486,37 @@ img { max-width: 100%; height: auto; display: block; }
 
 /* IMAGE GRID */
 
-.launch-right {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
 
 .image-grid {
-  width: 420px;
-  aspect-ratio: 1 / 1;
+  width: 100%;
+  height: 100%;
+  aspect-ratio: auto; /* important */
   display: grid;
+
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: repeat(2, 1fr);
+
   gap: 6px;
 }
 
 .tile {
-  background-size: 200% 200%;
-  background-repeat: no-repeat;
-  transition: background-image 0.2s ease;
+  position: relative;
+  overflow: hidden;
 }
 
+
+.tile-inner {
+  position: absolute;
+  inset: 0;
+
+  background-repeat: no-repeat;
+
+  /* CRITICAL */
+  background-size: 200% 200%;
+
+  /* base center crop */
+  background-position: 50% 50%;
+}
 
 /* --- PHILOSOPHY EYEBROW TAG --- */
 .philosophy-section .hero-label {
@@ -556,7 +575,7 @@ img { max-width: 100%; height: auto; display: block; }
     -webkit-text-fill-color: transparent;
 }
 .philosophy-section {
-    background-color: #F7EFE5; /* #F6EFD2 */
+    background-color: #e46e69; /* #F6EFD2 */
     padding: 120px 0;
     overflow: hidden;
 }
@@ -1078,6 +1097,11 @@ img { max-width: 100%; height: auto; display: block; }
 }
 
 /* --- DARK CONTACT SECTION --- */
+
+.form-title{
+    color: #000;
+    margin-top: 10px;
+}
 .contact-section {
     background-color: #000000; /* Keeping dark background for contrast */
     padding: 120px 0;
@@ -1108,17 +1132,17 @@ img { max-width: 100%; height: auto; display: block; }
 }
 
 .calendly-form-wrapper {
-    background: #0d0d0d;
+    background: #ffffff;
     border-radius: 20px;
     padding: 20px;
-    border: 1px solid #222;
-    box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+    box-shadow: 0 20px 60px rgba(0,0,0,0.25);
 }
 
 /* Keep iframe visually clean */
 .calendly-inline-widget iframe {
-    border-radius: 16px;
-    background: #000;
+    border-radius: 12px;
+    border-color: #FFFFFF;
+    background: #ffffff;
 }
 
 /* --- QUOTE SIDE STYLING --- */
@@ -1368,44 +1392,17 @@ img { max-width: 100%; height: auto; display: block; }
 .post-content { padding: 20px; }
 .read-more-btn { color: var(--primary); font-weight: bold; }
 
-.contact-section { background: var(--bg-light); padding: 100px 0; }
+.contact-section {
+    padding-top: 10px !important;
+     background: var(--bg-light);
+     padding: 100px 0; }
 
-.ghost-input {
-    width: 100%;
-    background: transparent;
-    border: none;
-    border-bottom: 2px solid var(--bg-alt);
-    padding: 15px 0;
-    margin-bottom: 25px;
-    font-size: 1rem;
-    outline: none;
-    transition: var(--transition);
-}
 
-.ghost-input:focus {
-    border-bottom-color: var(--primary);
-}
 
-.checkbox-pill {
-    display: inline-block;
-    padding: 8px 15px;
-    background: var(--bg-alt);
-    border-radius: 20px;
-    margin: 5px;
-    cursor: pointer;
-    font-size: 0.9rem;
-}
 
-.submit-btn {
-    width: 100%;
-    padding: 20px;
-    background: var(--dark);
-    color: white;
-    border: none;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    cursor: pointer;
-}
+
+
+
 
 /* Slider Container Logic */
 /* --- Blog Section (Inverted Colors) --- */
