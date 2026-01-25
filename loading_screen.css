@@ -1,0 +1,50 @@
+#splash {
+  position: fixed;
+  inset: 0;
+  z-index: 99999999;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background: #fff;
+  transition: background-color 0.6s ease, opacity 0.6s ease;
+}
+
+#splash.dark {
+  background: #000;
+}
+
+.brand-lockup {
+  font-family: "Inter", system-ui, sans-serif;
+  font-size: clamp(3rem, 8vw, 6rem);
+  font-weight: 900;
+  letter-spacing: -0.04em;
+  color: #000;
+  white-space: nowrap;
+  transition: color 0.6s ease;
+}
+
+#splash.dark .brand-lockup {
+  color: #fff;
+}
+
+.logo-letter {
+  display: inline-block;
+
+  height: 0.95em;          /* slightly smaller than text */
+  width: auto;
+
+  margin-left: -0.60em;
+margin-right: -0.60em;   /* ← pulls “w” closer */
+
+  vertical-align: -0.14em;
+
+  transition: filter 0.6s ease;
+}
+
+
+
+#splash.dark .logo-letter {
+  filter: invert(1);
+}
