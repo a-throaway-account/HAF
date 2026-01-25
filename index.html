@@ -13,21 +13,32 @@
 	<link rel="canonical" href="https://hustleandflow.in/" />
 	<link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="marquee.css">
-    <link
-  href="https://assets.calendly.com/assets/external/widget.css"
-  rel="stylesheet"
-/>
+    <link  href="https://assets.calendly.com/assets/external/widget.css"
+  rel="stylesheet"/>
+  <link rel="stylesheet" href="loading_screen.css">
 
 
 		
 </head>
 
 <body class="home page-template page-template-elementor_header_footer page page-id-11889 wp-embed-responsive Wplgnite Wplgnite-dizmo elementor-default elementor-template-full-width elementor-kit-6 elementor-page elementor-page-11889">
-	<!--Progress Bar-->
+	<div id="splash" class="splash light">
+  <div class="brand-lockup">
+    Hustle & Fl
+    <img
+      src="logos/hustleandflow-logo.png"
+      class="logo-letter"
+      alt=""
+    />
+    w
+  </div>
+</div>
+  
+    <!--Progress Bar-->
     <div class="progress-container">
     <div class="progress-bar" id="scrollBar"></div>
 </div>
-    
+
     
     
     <!--NAVBAR-->
@@ -213,14 +224,12 @@ if (typeof gsap !== 'undefined') {
     <p>Crafting digital excellence for premium brands.</p>
   </div>
 
-  <div class="launch-right">
-    <div class="image-grid" id="imageGrid">
-      <div class="tile"></div>
-      <div class="tile"></div>
-      <div class="tile"></div>
-      <div class="tile"></div>
-    </div>
-  </div>
+  <div class="image-grid">
+  <div class="tile"><div class="tile-inner"></div></div>
+  <div class="tile"><div class="tile-inner"></div></div>
+  <div class="tile"><div class="tile-inner"></div></div>
+  <div class="tile"><div class="tile-inner"></div></div>
+</div>
 </section>
 <script>
 const images = [
@@ -234,35 +243,35 @@ const tiles = document.querySelectorAll(".tile");
 let currentImage = 0;
 let nextImage = 1;
 
-const positions = [
-  [0, 0], // (0,0)
-  [1, 0], // (1,0)
-  [0, 1], // (0,1)
-  [1, 1]  // (1,1)
-];
+const order = [0, 1, 2, 3]; // TL → TR → BL → BR
 
-function setImage(imgIndex) {
+function applyImage(imgIndex) {
   tiles.forEach((tile, i) => {
-    const x = i % 2;
-    const y = Math.floor(i / 2);
+    const inner = tile.querySelector(".tile-inner");
 
-    tile.style.backgroundImage = `url(${images[imgIndex]})`;
-    tile.style.backgroundPosition = `${x * 100}% ${y * 100}%`;
+    const col = i % 2;                 // 0 or 1
+    const row = Math.floor(i / 2);     // 0 or 1
+
+    inner.style.backgroundImage = `url(${images[imgIndex]})`;
+
+    inner.style.backgroundPosition = `
+      ${col === 0 ? "0%" : "100%"}
+      ${row === 0 ? "0%" : "100%"}
+    `;
   });
 }
 
-// initialize
-setImage(currentImage);
+
+applyImage(currentImage);
 
 function animateSwap() {
   let step = 0;
 
   const interval = setInterval(() => {
-    const [x, y] = positions[step];
-    const index = y * 2 + x;
+    const tile = tiles[order[step]];
+    tile.querySelector(".tile-inner").style.backgroundImage =  `url(${images[nextImage]})`;
 
-    tiles[index].style.backgroundImage =
-      `url(${images[nextImage]})`;
+    
 
     step++;
 
@@ -276,6 +285,7 @@ function animateSwap() {
 
 setInterval(animateSwap, 3000);
 </script>
+
 
 <!--Philosophy Section-->				
 <section class="philosophy-section light-theme">
@@ -341,6 +351,25 @@ setInterval(animateSwap, 3000);
         </div>
 
         <div class="marquee marquee--reverse" id="track2">
+            <div class="marquee__group">
+                <img src="logos/hustleandflow-logo.png" alt="">
+                <img src="logos/hustleandflow-logo.png" alt="">
+                <img src="logos/hustleandflow-logo.png" alt="">
+                <img src="logos/hustleandflow-logo.png" alt="">
+                <img src="logos/hustleandflow-logo.png" alt="">
+                <img src="logos/hustleandflow-logo.png" alt="">
+            </div>
+            <div aria-hidden="true" class="marquee__group">
+                
+                <img src="logos/hustleandflow-logo.png" alt="">
+                <img src="logos/hustleandflow-logo.png" alt="">
+                <img src="logos/hustleandflow-logo.png" alt="">
+                <img src="logos/hustleandflow-logo.png" alt="">
+                <img src="logos/hustleandflow-logo.png" alt="">
+                <img src="logos/hustleandflow-logo.png" alt="">
+            </div>
+        </div>
+        <div class="marquee" id="track1">
             <div class="marquee__group">
                 <img src="logos/hustleandflow-logo.png" alt="">
                 <img src="logos/hustleandflow-logo.png" alt="">
@@ -642,11 +671,12 @@ setInterval(animateSwap, 3000);
 <!--Contact Us Form-->
 				<section class="contact-section" id="contact-us">
     <div class="container">
+        <span class="eyebrow-red"><sup>❝</sup>Get a Quote</span>
+        <h2 class="form-title">Say Hello<span>.</span></h2>
         <div class="contact-split-grid">
             
             <div class="contact-form-side">
-                <span class="eyebrow-red"><sup>❝</sup>Get a Quote</span>
-                <h2 class="form-title">Say Hello<span>.</span></h2>
+                
                 
                 <div class="calendly-form-wrapper">
 
@@ -747,6 +777,34 @@ setInterval(animateSwap, 3000);
 	<script src="slider.js"></script>
 	<script src="carousel.js"></script>
     <script src="logo-loop.js"></script>
-	<script src="https://assets.calendly.com/assets/external/widget.js"   async></script>
+    <script src="https://assets.calendly.com/assets/external/widget.js"   async></script>
+      <script>
+document.body.style.overflow = "hidden";
+
+window.addEventListener("load", () => {
+  const splash = document.getElementById("splash");
+
+  if (!splash) return;
+
+  // light → dark
+  setTimeout(() => {
+    splash.classList.add("dark");
+  }, 1000);
+
+  // fade out
+  setTimeout(() => {
+    splash.style.opacity = "0";
+  }, 2000);
+
+  // remove completely
+  setTimeout(() => {
+    splash.remove();
+    document.body.style.overflow = "";
+  }, 2700);
+});
+</script>
+
+
+
 </body>
 </html>
