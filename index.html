@@ -16,6 +16,7 @@
     <link  href="https://assets.calendly.com/assets/external/widget.css"
   rel="stylesheet"/>
   <link rel="stylesheet" href="loading_screen.css">
+  <link rel="stylesheet" href="services.css">
 
 
 		
@@ -46,13 +47,39 @@
     <div class="nav-container">
         <a href="#" class="nav-logo">
             <img src="logos/hustleandflow.png" alt="HustleandFlow" id="navLogo">
-        </a> <button class="menu-burger" aria-label="Toggle Menu">
+        </a> <button class="menu-burger"  id="menuToggle" aria-label="Toggle Menu">
             <span class="burger-line"></span>
             <span class="burger-line"></span>
         </button>
     </div>
 </nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="">Home</a>
+  <a href="#our-services">Services</a>
+  <a href="#contact-us">Contact</a>
+</div>
+<script>
+const burger = document.getElementById("menuToggle");
+const menu = document.getElementById("mobileMenu");
 
+burger.addEventListener("click", () => {
+  burger.classList.toggle("active");
+  menu.classList.toggle("open");
+});
+</script>
+
+
+<script>
+    const nav = document.querySelector(".main-nav");
+
+window.addEventListener("scroll", () => {
+  if (window.scrollY > 20) {
+    nav.classList.add("scrolled");
+  } else {
+    nav.classList.remove("scrolled");
+  }
+});
+</script>
 <!--Main-Hero-->
 <section class="focal-hero">
     <div class="hero-noise-overlay"></div>
@@ -512,51 +539,105 @@ setInterval(animateSwap, 3000);
 });</script>
 <!--Services-->				
 <section id="our-services" class="services-section">
-    <div class="container">
-        <div class="services-header">
-            <div class="header-left">
-                <span class="label-accent">Our Expertise</span>
-                <h2 class="section-title">We got you Covered, <br><span class="text-highlight">Head to Toe.</span></h2>
-            </div>
-            <div class="services-nav">
-                <button class="nav-btn prev" onclick="moveServices('left')"><i class="fas fa-arrow-left"></i></button>
-                <button class="nav-btn next" onclick="moveServices('right')"><i class="fas fa-arrow-right"></i></button>
-            </div>
-        </div>
 
-        <div class="services-slider-window">
-            <div class="services-grid" id="servicesGrid">
-                <div class="service-card">
-                    <div class="service-icon">01</div>
-                    <h5>H&F <span class="accent-text">Studios</span></h5>
-                    <p>Creative concepts and visual communications designed to elevate your brand above the noise of the D2C market.</p>
-                    <a href="/studios" class="text-link">Explore Studios</a>
-                </div>
+  <div class="container">
 
-                <div class="service-card">
-                    <div class="service-icon">02</div>
-                    <h5>H&F <span class="accent-text">Marketplaces</span></h5>
-                    <p>Scaling e-commerce brands through expert-led strategies on the world’s largest marketplaces.</p>
-                    <a href="/marketplaces" class="text-link">View Strategy</a>
-                </div>
-
-                <div class="service-card">
-                    <div class="service-icon">03</div>
-                    <h5>H&F <span class="accent-text">Exchange</span></h5>
-                    <p>Maximize reach with native ad platforms, connecting your brand to the right audience at the peak of intent.</p>
-                    <a href="/exchange" class="text-link">Media Buying</a>
-                </div>
-
-                <div class="service-card">
-                    <div class="service-icon">04</div>
-                    <h5>H&F <span class="accent-text">Insights</span></h5>
-                    <p>Data-driven analytics to activate media plans with proven track records. If it's not data, it's a guess.</p>
-                    <a href="/insights" class="text-link">Data Audit</a>
-                </div>
-            </div>
-        </div>
+    <!-- HEADER -->
+    <div class="services-header">
+      <div class="header-left">
+        <span class="label-accent">Our Expertise</span>
+        <h2 class="section-title">
+          We got you Covered,<br>
+          <span class="text-highlight">Head to Toe.</span>
+        </h2>
+      </div>
     </div>
+
+    <!-- SLIDER -->
+    <div class="services-slider">
+
+      <!-- LEFT ARROW -->
+      <button class="slider-arrow prev"
+        onclick="moveServices('left')">
+        <svg width="20" height="20" viewBox="0 0 24 24"
+          fill="none" stroke="currentColor"
+          stroke-width="2.5" stroke-linecap="round"
+          stroke-linejoin="round">
+          <path d="m15 18-6-6 6-6"/>
+        </svg>
+      </button>
+
+      <!-- RIGHT ARROW -->
+      <button class="slider-arrow next"
+        onclick="moveServices('right')">
+        <svg width="20" height="20" viewBox="0 0 24 24"
+          fill="none" stroke="currentColor"
+          stroke-width="2.5" stroke-linecap="round"
+          stroke-linejoin="round">
+          <path d="m9 18 6-6-6-6"/>
+        </svg>
+      </button>
+
+      <!-- TRACK -->
+      <div class="services-track" id="servicesGrid">
+
+        <!-- CARD -->
+        <div class="service-card">
+          <div class="service-icon-row">
+            <div class="service-icon">01</div>
+            <img src="vids/amazon-animation.gif" class="service-gif" />
+          </div>
+          <h5>Amazon <span class="accent-text">Ads</span></h5>
+          <p>Launch and scale your D2C brand on India’s leading marketplace.</p>
+          <a href="#" class="text-link">Explore Studios</a>
+        </div>
+
+        <div class="service-card">
+          <div class="service-icon-row">
+            <div class="service-icon">02</div>
+            <img src="vids/fb-animation.gif" class="service-gif" />
+          </div>
+          <h5>Meta <span class="accent-text">Ads</span></h5>
+          <p>High-impact Meta ad campaigns engineered for ROAS.</p>
+          <a href="#" class="text-link">View Strategy</a>
+        </div>
+
+        <div class="service-card">
+          <div class="service-icon-row">
+            <div class="service-icon">03</div>
+            <img src="vids/ga-animation.gif" class="service-gif" />
+          </div>
+          <h5>Google <span class="accent-text">Ads</span></h5>
+          <p>Capture high-intent demand through paid search.</p>
+          <a href="#" class="text-link">Media Buying</a>
+        </div>
+
+        <div class="service-card">
+          <div class="service-icon-row">
+            <div class="service-icon">04</div>
+            <img src="vids/webdev-animation.gif" class="service-gif" />
+          </div>
+          <h5>Web <span class="accent-text">Design</span></h5>
+          <p>High-performance websites built to convert traffic.</p>
+          <a href="#" class="text-link">View Work</a>
+        </div>
+
+        <div class="service-card">
+          <div class="service-icon-row">
+            <div class="service-icon">05</div>
+            <img src="vids/search-animation.gif" class="service-gif" />
+          </div>
+          <h5>SEO <span class="accent-text">Growth</span></h5>
+          <p>Organic growth systems built for long-term scale.</p>
+          <a href="#" class="text-link">Data Audit</a>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
 </section>
+
 
 
 <!--Case Studies-->
@@ -612,7 +693,7 @@ setInterval(animateSwap, 3000);
 
 <!--Blogs-->
 <section class="blog-section">
-    <div class="blog-title-container">
+    <div id="blogs" class="blog-title-container">
         <h2 class="blog-main-title">Latest News & Insights</h2>
     </div>
 
@@ -671,8 +752,6 @@ setInterval(animateSwap, 3000);
 <!--Contact Us Form-->
 				<section class="contact-section" id="contact-us">
     <div class="container">
-        <span class="eyebrow-red"><sup>❝</sup>Get a Quote</span>
-        <h2 class="form-title">Say Hello<span>.</span></h2>
         <div class="contact-split-grid">
             
             <div class="contact-form-side">
@@ -691,27 +770,34 @@ setInterval(animateSwap, 3000);
             </div>
 
             <div class="contact-quote-side">
-                <div class="quote-wrapper">
-    <div class="quote-bubble">
-        <i class="fas fa-quote-left quote-icon"></i>
-        <h3 class="big-quote">
-            "The hustle gets you in the door; the flow keeps you in the room."
-        </h3>
-        <p class="quote-author">— H&amp;F Philosophy</p>
-    </div>
-</div>
 
-                <div class="contact-info-footer">
-                    <div class="info-item">
-                        <span>Direct Line</span>
-                        <p>+91 98903 26596</p>
-                    </div>
-                    <div class="info-item">
-                        <span>Email</span>
-                        <p>roi@viralmint.com</p>
-                    </div>
-                </div>
-            </div>
+  <div class="contact-left-content">
+
+    <h2 class="contact-left-title">
+      Say hello<span>.</span>
+    </h2>
+
+    <p class="contact-left-quote">
+      “The hustle gets you in the door —
+      the flow keeps you in the room.”
+    </p>
+
+    <div class="contact-divider"></div>
+
+    <div class="contact-info-footer">
+      <div class="info-item">
+        <span>Direct Line</span>
+        <p>+91 98903 26596</p>
+      </div>
+      <div class="info-item">
+        <span>Email</span>
+        <p>roi@viralmint.com</p>
+      </div>
+    </div>
+
+  </div>
+
+</div>
 
         </div>
     </div>
@@ -725,17 +811,14 @@ setInterval(animateSwap, 3000);
             <p class="footer-description">
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium quo libero optio deleniti vero, ad tempore!
             </p>
-            <ul class="contact-list">
-                <li><i class="fas fa-phone-alt"></i> +91 123-456-7890</li>
-                <li><i class="far fa-envelope"></i> mail@hustleandflow.in</li>
-            </ul>
+            
         </div>
 
         <div class="footer-col">
             <h4 class="footer-title">Quick Links</h4>
             <ul class="footer-links">
-                <li><a href="/about-us">About Us</a></li>
-                <li><a href="/blogs">Blogs</a></li>
+                <li><a href="#">About Us</a></li>
+                <li><a href="#blogs">Blogs</a></li>
                 <li><a href="#contact-us">Contact Us</a></li>
             </ul>
         </div>
@@ -803,6 +886,41 @@ window.addEventListener("load", () => {
   }, 2700);
 });
 </script>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+
+  const grid = document.getElementById("servicesGrid");
+  const cards = document.querySelectorAll(".service-card");
+
+  if (!grid || !cards.length) {
+    console.error("Services slider not found");
+    return;
+  }
+
+  const gap = 30;
+  const cardWidth = cards[0].offsetWidth + gap;
+
+  let index = 0;
+
+  window.moveServices = function (direction) {
+
+    if (direction === "right") {
+      index++;
+    } else {
+      index--;
+    }
+
+    if (index < 0) index = cards.length - 1;
+    if (index >= cards.length) index = 0;
+
+    grid.style.transform =
+      `translateX(-${index * cardWidth}px)`;
+  };
+
+});
+</script>
+
+
 
 
 
