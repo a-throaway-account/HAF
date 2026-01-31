@@ -1,0 +1,55 @@
+.blogs-marquee {
+  --duration: 40s; /* fallback */
+  gap:0;
+
+  display: flex;
+  overflow: hidden;
+  user-select: none;
+  gap: var(--marquee-gap);
+
+  animation: marquee-scroll var(--duration) linear infinite;
+
+  mask-image: linear-gradient(to right,
+    transparent,
+    black 15%,
+    black 85%,
+    transparent
+  );
+    width: 100%;
+    overflow: hidden;
+    border-top: 1px solid #ed991b;
+    border-bottom: 1px solid #ed991b;
+    padding: 18px 0;
+    margin-bottom: 60px;
+}
+
+.marquee-track {
+    display: flex;
+    gap: 17px;
+    white-space: nowrap;
+    width: max-content;
+    animation: marquee-scroll 22s linear infinite;
+}
+
+.marquee span {
+    font-size: clamp(2.2rem, 6vw, 3.8rem);
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #e2ddb4;
+}
+
+/* animation */
+@keyframes marquee-scroll {
+    from {
+        transform: translateX(0);
+    }
+    to {
+        transform: translateX(-50%);
+    }
+}
+
+/* pause on hover */
+.marquee:hover .marquee-track {
+    animation-play-state: paused;
+}
