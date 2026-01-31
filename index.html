@@ -4,20 +4,26 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Emart - Multi-purpose WooCommerce Theme">
-	
 	<meta name='robots' content='index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1' />
 	<style>img:is([sizes="auto" i], [sizes^="auto," i]) { contain-intrinsic-size: 3000px 1500px }</style>
 	
 	<!-- This site is optimized with the Yoast SEO plugin v25.7 - https://yoast.com/wordpress/plugins/seo/ -->
 	<title>Hustle And Flow</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400&display=swap" rel="stylesheet">
+
 	<link rel="canonical" href="https://hustleandflow.in/" />
 	<link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="marquee.css">
     <link  href="https://assets.calendly.com/assets/external/widget.css"
   rel="stylesheet"/>
   <link rel="stylesheet" href="loading_screen.css">
+  <link rel="stylesheet" href="launch-section.css">
+  <link rel="stylesheet" href="reviews.css">
+  <link rel="stylesheet" href="philosophy.css">
   <link rel="stylesheet" href="services.css">
-
+  <link rel="stylesheet" href="focal-hero.css">
+  <link rel="stylesheet" href="layout.css">
+  <link rel="stylesheet" href="blogs.css">
 
 		
 </head>
@@ -81,6 +87,8 @@ window.addEventListener("scroll", () => {
 });
 </script>
 <!--Main-Hero-->
+
+<main class="site-wrapper">
 <section class="focal-hero">
     <div class="hero-noise-overlay"></div>
     <div class="container">
@@ -108,7 +116,7 @@ window.addEventListener("scroll", () => {
             <p class="hero-sub-text">
   <span class="hero-quote shiny">
     Ignite Your <span class="text-accent-red">Hustle</span>, 
-    Find Your <span class="text-outline">Flow.</span>
+    Find Your <span class="text-outline">Flow</span>
   </span>
 
   <span class="hero-description">
@@ -315,42 +323,96 @@ setInterval(animateSwap, 3000);
 
 
 <!--Philosophy Section-->				
-<section class="philosophy-section light-theme">
-    <div class="philosophy-container">
-        <div class="philosophy-content">
-            <div class="hero-label">Our Philosophy</div>
-            <h2 class="philosophy-title">
-                We don't just "manage" accounts. <br>
-                <span class="gradient-text">We take ownership.</span>
-            </h2>
-            <div class="philosophy-text">
-                <p>
-                    Most agencies are external vendors. We operate as an extension of your internal team. 
-                    When we’re on board, your KPIs become our obsession.
-                </p>
-                <p>
-                    Since our inception, we’ve focused on <strong>service superiority</strong>. 
-                    We build the systems that allow your brand to scale while you maintain the momentum of the hustle.
-                </p>
-            </div>
-            <div class="hero-cta-group" style="justify-content: flex-start;">
-                <button class="btn-primary">The Methodology</button>
-            </div>
+<section class="philosophy-section">
+    <div class="philosophy-header">
+
+
+  <h2 class="section-title">
+    Our    <span class="text-highlight">Philosophy</span>
+  </h2>
+
+</div>
+
+
+  <div class="philosophy-container">
+
+    <!-- LEFT FLIP CARD -->
+    <div class="flip-card" id="philosophyCard">
+      <div class="flip-inner">
+
+        <!-- FRONT: TEXT -->
+        <div class="flip-face front philosophy-card">
+          
+
+          <h2>
+            We don't just manage accounts.<br>
+            <span class="gradient-text">We take ownership.</span>
+          </h2>
+
+          <p>
+            Most agencies act as external vendors.
+            We operate as an extension of your internal team.
+          </p>
+
+          <p>
+            When we’re on board, your KPIs become our obsession.
+          </p>
         </div>
 
-        <div class="philosophy-visual">
-            <div class="image-wrapper">
-                <img src="https://picsum.photos/id/20/800/1000" alt="Strategic Meeting" class="main-img">
-                
-                <div class="floating-stat-card">
-                    <span class="stat-number gradient-text">10X</span>
-                    <span class="stat-label">Average Scaling</span>
-                </div>
-            </div>
-            <div class="blob-subtle"></div>
+        <!-- BACK: IMAGE -->
+        <div class="flip-face back image-card">
+
+          <h2>
+            We don't just manage accounts.<br>
+            <span class="gradient-text">We take ownership.</span>
+          </h2>
+
+          <p>
+            Most agencies act as external vendors.
+            We operate as an extension of your internal team.
+          </p>
+
+          <p>
+            When we’re on board, your KPIs become our obsession.
+          </p>
         </div>
+
+          
+        </div>
+
+      </div>
+
+    <!-- RIGHT STATIC IMAGE -->
+    <div class="static-image-card">
+      <img
+        src="https://picsum.photos/id/20/800/1000"
+        alt="Strategy"
+      />
     </div>
+
+  </div>
+
+  <!-- CTA -->
+  <div class="flip-cta">
+    <button id="flipBtn" class="btn-primary">
+      Know More
+    </button>
+  </div>
+
 </section>
+
+
+
+<script>
+const card = document.getElementById("philosophyCard");
+const btn = document.getElementById("flipBtn");
+
+btn.addEventListener("click", () => {
+  card.classList.toggle("flipped");
+});
+</script>
+
+
 
 <!--Logo Sliding Section-->
 <section class="clients-brand-section">
@@ -583,54 +645,121 @@ setInterval(animateSwap, 3000);
 
         <!-- CARD -->
         <div class="service-card">
-          <div class="service-icon-row">
-            <div class="service-icon">01</div>
-            <img src="vids/amazon-animation.gif" class="service-gif" />
-          </div>
-          <h5>Amazon <span class="accent-text">Ads</span></h5>
-          <p>Launch and scale your D2C brand on India’s leading marketplace.</p>
-          <a href="#" class="text-link">Explore Studios</a>
-        </div>
+  <div class="service-icon-row">
+    <div class="service-icon">01</div>
+    <img src="vids/amazon-animation.gif" class="service-gif" />
+  </div>
+  <h5>Amazon <span class="accent-text">Ads</span></h5>
+  <p>Launch and scale your D2C brand on India’s leading marketplace.</p>
+</div>
 
-        <div class="service-card">
-          <div class="service-icon-row">
-            <div class="service-icon">02</div>
-            <img src="vids/fb-animation.gif" class="service-gif" />
-          </div>
-          <h5>Meta <span class="accent-text">Ads</span></h5>
-          <p>High-impact Meta ad campaigns engineered for ROAS.</p>
-          <a href="#" class="text-link">View Strategy</a>
-        </div>
+<div class="service-card">
+  <div class="service-icon-row">
+    <div class="service-icon">02</div>
+    <img src="vids/meta-animation.gif" class="service-gif" />
+  </div>
+  <h5>Meta <span class="accent-text">Ads</span></h5>
+  <p>High-converting Facebook and Instagram campaigns built for scalable ROAS.</p>
+</div>
 
-        <div class="service-card">
-          <div class="service-icon-row">
-            <div class="service-icon">03</div>
-            <img src="vids/ga-animation.gif" class="service-gif" />
-          </div>
-          <h5>Google <span class="accent-text">Ads</span></h5>
-          <p>Capture high-intent demand through paid search.</p>
-          <a href="#" class="text-link">Media Buying</a>
-        </div>
+<div class="service-card">
+  <div class="service-icon-row">
+    <div class="service-icon">03</div>
+    <img src="vids/google-animation.gif" class="service-gif" />
+  </div>
+  <h5>Google <span class="accent-text">Ads</span></h5>
+  <p>Capture high-intent demand through search, shopping, display, and YouTube.</p>
+</div>
 
-        <div class="service-card">
-          <div class="service-icon-row">
-            <div class="service-icon">04</div>
-            <img src="vids/webdev-animation.gif" class="service-gif" />
-          </div>
-          <h5>Web <span class="accent-text">Design</span></h5>
-          <p>High-performance websites built to convert traffic.</p>
-          <a href="#" class="text-link">View Work</a>
-        </div>
+<div class="service-card">
+  <div class="service-icon-row">
+    <div class="service-icon">04</div>
+    <img src="vids/seo-animation.gif" class="service-gif" />
+  </div>
+  <h5>SEO <span class="accent-text">Optimization</span></h5>
+  <p>Long-term organic growth powered by technical, on-page, and content SEO.</p>
+</div>
 
-        <div class="service-card">
-          <div class="service-icon-row">
-            <div class="service-icon">05</div>
-            <img src="vids/search-animation.gif" class="service-gif" />
-          </div>
-          <h5>SEO <span class="accent-text">Growth</span></h5>
-          <p>Organic growth systems built for long-term scale.</p>
-          <a href="#" class="text-link">Data Audit</a>
-        </div>
+<div class="service-card">
+  <div class="service-icon-row">
+    <div class="service-icon">05</div>
+    <img src="vids/amazon-animation.gif" class="service-gif" />
+  </div>
+  <h5>Amazon <span class="accent-text">Marketplace</span></h5>
+  <p>Listing optimization, A+ content, storefronts, and full account management.</p>
+</div>
+
+<div class="service-card">
+  <div class="service-icon-row">
+    <div class="service-icon">06</div>
+    <img src="vids/flipkart-animation.gif" class="service-gif" />
+  </div>
+  <h5>Flipkart <span class="accent-text">Ads</span></h5>
+  <p>Marketplace-specific strategies to dominate visibility and conversions.</p>
+</div>
+
+<div class="service-card">
+  <div class="service-icon-row">
+    <div class="service-icon">07</div>
+    <img src="vids/growth-animation.gif" class="service-gif" />
+  </div>
+  <h5>Growth <span class="accent-text">Marketing</span></h5>
+  <p>Full-funnel experimentation across acquisition, activation, and retention.</p>
+</div>
+
+<div class="service-card">
+  <div class="service-icon-row">
+    <div class="service-icon">08</div>
+    <img src="vids/youtube-animation.gif" class="service-gif" />
+  </div>
+  <h5>YouTube <span class="accent-text">Ads</span></h5>
+  <p>Video-first campaigns optimized for awareness, consideration, and scale.</p>
+</div>
+
+<div class="service-card">
+  <div class="service-icon-row">
+    <div class="service-icon">09</div>
+    <img src="vids/retention-animation.gif" class="service-gif" />
+  </div>
+  <h5>Retention <span class="accent-text">Marketing</span></h5>
+  <p>Email, WhatsApp, SMS, and lifecycle flows to maximize LTV.</p>
+</div>
+
+<div class="service-card">
+  <div class="service-icon-row">
+    <div class="service-icon">10</div>
+    <img src="vids/analytics-animation.gif" class="service-gif" />
+  </div>
+  <h5>Analytics & <span class="accent-text">Reporting</span></h5>
+  <p>Custom dashboards, GA4, attribution modeling, and performance insights.</p>
+</div>
+
+<div class="service-card">
+  <div class="service-icon-row">
+    <div class="service-icon">11</div>
+    <img src="vids/automation-animation.gif" class="service-gif" />
+  </div>
+  <h5>Marketing <span class="accent-text">Automation</span></h5>
+  <p>CRM workflows, integrations, lead scoring, and funnel automation systems.</p>
+</div>
+
+<div class="service-card">
+  <div class="service-icon-row">
+    <div class="service-icon">12</div>
+    <img src="vids/webdev-animation.gif" class="service-gif" />
+  </div>
+  <h5>Web <span class="accent-text">Development</span></h5>
+  <p>High-performance websites optimized for UX, speed, and conversions.</p>
+</div>
+
+<div class="service-card">
+  <div class="service-icon-row">
+    <div class="service-icon">13</div>
+    <img src="vids/creative-animation.gif" class="service-gif" />
+  </div>
+  <h5>Creative <span class="accent-text">Design Analysis</span></h5>
+  <p>Ad creative diagnostics, CRO insights, and performance-led design direction.</p>
+</div>
 
       </div>
     </div>
@@ -643,7 +772,7 @@ setInterval(animateSwap, 3000);
 <!--Case Studies-->
 <section class="case-studies-section">
     <div class="section-header">
-        <p class="sub-headline">Visionary brands choose ViralMint</p>
+        <p class="sub-headline">Visionary brands choose H&F</p>
         <h2 class="main-headline">Hyper Growth for Hyper Active Clients</h2>
     </div>
 
@@ -693,9 +822,15 @@ setInterval(animateSwap, 3000);
 
 <!--Blogs-->
 <section class="blog-section">
-    <div id="blogs" class="blog-title-container">
-        <h2 class="blog-main-title">Latest News & Insights</h2>
-    </div>
+    <div class="blog-title-container marquee">
+  <div class="marquee-track">
+    <span> Latest News &amp; Insights | </span>
+    <span> Latest News &amp; Insights | </span>
+    <span> Latest News &amp; Insights | </span>
+    <span> Latest News &amp; Insights | </span>
+  </div>
+</div>
+
 
     <div class="blog-wrapper">
         <div class="blog-track" id="blogTrack">
@@ -791,7 +926,7 @@ setInterval(animateSwap, 3000);
       </div>
       <div class="info-item">
         <span>Email</span>
-        <p>roi@viralmint.com</p>
+        <p>roi@hustlenflow.com</p>
       </div>
     </div>
 
@@ -887,40 +1022,55 @@ window.addEventListener("load", () => {
 });
 </script>
 <script>
-document.addEventListener("DOMContentLoaded", () => {
+  const track = document.getElementById("servicesGrid");
+const cards = Array.from(track.children);
 
-  const grid = document.getElementById("servicesGrid");
-  const cards = document.querySelectorAll(".service-card");
+const cardWidth = cards[0].offsetWidth + 30; // gap
+let index = 0;
 
-  if (!grid || !cards.length) {
-    console.error("Services slider not found");
-    return;
-  }
+// CLONE FIRST + LAST SET
+cards.forEach(card => {
+  track.appendChild(card.cloneNode(true));
+});
 
-  const gap = 30;
-  const cardWidth = cards[0].offsetWidth + gap;
+cards.slice().reverse().forEach(card => {
+  track.prepend(card.cloneNode(true));
+});
 
-  let index = 0;
+const totalCards = track.children.length;
 
-  window.moveServices = function (direction) {
+// Start from real first card
+index = cards.length;
+track.style.transform = `translateX(-${index * cardWidth}px)`;
 
-    if (direction === "right") {
-      index++;
-    } else {
-      index--;
+// ------------------------------------
+
+function moveServices(direction) {
+  if (direction === "right") index++;
+  else index--;
+
+  track.style.transition = "transform 0.45s ease";
+  track.style.transform = `translateX(-${index * cardWidth}px)`;
+
+  // 🔁 loop logic
+  setTimeout(() => {
+    if (index >= totalCards - cards.length) {
+      index = cards.length;
+      track.style.transition = "none";
+      track.style.transform = `translateX(-${index * cardWidth}px)`;
     }
 
-    if (index < 0) index = cards.length - 1;
-    if (index >= cards.length) index = 0;
+    if (index < cards.length) {
+      index = totalCards - cards.length * 2;
+      track.style.transition = "none";
+      track.style.transform = `translateX(-${index * cardWidth}px)`;
+    }
+  }, 460);
+}
 
-    grid.style.transform =
-      `translateX(-${index * cardWidth}px)`;
-  };
-
-});
 </script>
 
-
+</main>
 
 
 
